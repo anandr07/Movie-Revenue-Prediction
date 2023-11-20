@@ -30,5 +30,30 @@ Movies are a unique combination of artistic expression and commercial ventures. 
 
 By conducting a comprehensive analysis of these features, this research aims to build a regression model (Linear, Decision Tree, Support Vector Machine) based on valuable insights through identifying patterns, relationships, and correlations. The findings of this study are expected to have substantial implications for movie production companies, investors, and stakeholders. They can leverage the predictive model developed in this project to make informed decisions regarding their movie investments, marketing strategies, and financial planning, ultimately contributing to the success and profitability of their ventures in the film industry.
 
-**Importing and Summary of the Stroke Data**
+**Importing the Movies Data**
 
+```{r}
+movie = read.csv("movies.csv")
+```
+
+**Removing Unwanted Columns**
+
+```{r Removing Unwanted Columns,include=F}
+library(dplyr)
+remove_col <- c(1,5,7,13,16,17,18,19,20)
+movie <- movie[, -remove_col]
+head(movie)
+```
+
+**Summary of the data**
+
+```{r Summary of the data,include=F}
+summary(movie)
+```
+
+**Checking for missing values in the data**
+
+```{r Checking for missing values in the data, include=F}
+missing_values <- is.na(movie)
+summary(missing_values)
+```
