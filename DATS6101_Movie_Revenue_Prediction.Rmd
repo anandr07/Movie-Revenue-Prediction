@@ -118,10 +118,8 @@ for (col in selected_columns) {
     theme(plot.title = element_text(size = 15)) +
     theme(axis.title = element_text(size = 12)) +
     theme(axis.text = element_text(size = 10))
-  
   box_plots_list[[col]] <- box_plot
 }
-
 for (col in selected_columns) {
   print(box_plots_list[[col]])
 }
@@ -132,6 +130,7 @@ for (col in selected_columns) {
 
 
 **Scatterplot for Revenue**
+
 ```{r}
 predictors <- c("Trailer_Likes", "Trailer_Views", "Vote_Count", "Budget", "Runtime", "Avg_Vote")
 
@@ -140,8 +139,6 @@ scatter_plots <- lapply(predictors, function(var) {
     geom_point() +
     labs(title = paste("Scatter plot of", var, "vs. Revenue"))
 })
-
-# Display scatter plots
 scatter_plots
 
 ```
@@ -149,8 +146,6 @@ scatter_plots
 **Scatterplot for Popularity**
 
 ```{r}
-# Scatterplots
-# Define the predictors and response variable
 predictors <- c("Trailer_Likes", "Trailer_Views", "Vote_Count", "Budget", "Runtime", "Avg_Vote")
 
 scatter_plots <- lapply(predictors, function(var) {
@@ -162,10 +157,29 @@ scatter_plots <- lapply(predictors, function(var) {
       y = "Popularity"
     )
 })
-
-# Display scatter plots
 scatter_plots
+```
 
+**Visualization of Correlation Matrix using Heatmap**
+
+```{r}
+numeric_cols <- sapply(movie, is.numeric)
+cor_matrix <- cor(movie[, numeric_cols])
+cor_matrix
+library(corrplot)
+corrplot(cor_matrix, method = "color")
+
+```
+
+**Pairwise Scatterplots**
+
+```{r}
+library(GGally)
+
+# Select a subset of numeric variables
+numeric_vars_subset <- c("Revenue", "Budget", "Popularity", "Runtime")
+# Create pairwise scatter plots
+ggpairs(movie[, numeric_vars_subset])
 
 ```
 
