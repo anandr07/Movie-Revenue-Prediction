@@ -27,7 +27,7 @@ By conducting a comprehensive analysis of these features, this research aims to 
 **Importing the Movies Data**
 
 ```{r}
-movies = read.csv("movies.csv/Movie_data.csv")
+movies = read.csv("Movie_data.csv")
 #head(movies)
 summary(movies)
 movie = movies # Creating a copy of data frame
@@ -70,7 +70,7 @@ smaller_font_size <- 0.8
 # Create a bar plot for the percentage of missing values in each column
 barplot(column_na_percentages, main = "Percentage of Missing Values in Each Column",
         xlab = "Columns", ylab = "Percentage of Missing Values",
-        col = "lightcoral", border = "black", ylim = c(0, 100),
+        col = "lightcoral", border = "black", ylim = c(0, 2),
         names.arg = names(column_na_percentages), las = 2, cex.names = smaller_font_size)
 
 print("Rows in Dataset before dropping rows with NA Values")
@@ -135,12 +135,14 @@ for (col in selected_columns) {
 predictors <- c("Trailer_Likes", "Trailer_Views", "Vote_Count", "Budget", "Runtime", "Avg_Vote")
 
 scatter_plots <- lapply(predictors, function(var) {
-  ggplot(movie, aes(x = get(var), y = movie$Revenue)) +
+  ggplot(movie, aes(x = get(var), y = Revenue, color = Revenue)) +
     geom_point() +
-    labs(title = paste("Scatter plot of", var, "vs. Revenue"))
+    labs(title = paste("Scatter plot of", var, "vs. Revenue"),
+         x = var,
+         y = "Revenue",
+         color = "Revenue")
 })
 scatter_plots
-
 ```
 
 **Scatterplot for Popularity**
@@ -148,16 +150,18 @@ scatter_plots
 ```{r}
 predictors <- c("Trailer_Likes", "Trailer_Views", "Vote_Count", "Budget", "Runtime", "Avg_Vote")
 
-scatter_plots <- lapply(predictors, function(var) {
-  ggplot(movie, aes(x = get(var), y = movie$Popularity)) +
+scatter_plots<- lapply(predictors, function(var) {
+  ggplot(movie, aes(x = get(var), y = Popularity, color = Popularity)) +
     geom_point() +
     labs(
       title = paste("Scatter plot of", var, "vs. Popularity"),
       x = var,  
-      y = "Popularity"
+      y = "Popularity",
+      color = "Popularity"
     )
 })
 scatter_plots
+
 ```
 
 **Visualization of Correlation Matrix using Heatmap**
@@ -175,11 +179,18 @@ corrplot(cor_matrix, method = "color")
 
 ```{r}
 library(GGally)
-
-# Select a subset of numeric variables
 numeric_vars_subset <- c("Revenue", "Budget", "Popularity", "Runtime")
-# Create pairwise scatter plots
+
 ggpairs(movie[, numeric_vars_subset])
+
+```
+
+**Correlation with Target variable and visualization of it**
+
+```{r}
+cor_with_revenue <- sapply(movie[, numeric_cols], function(x) cor(x, movie$Revenue))
+cor_with_revenue
+barplot(cor_with_revenue, names.arg = names(cor_with_revenue), col = "skyblue", main = "Correlation with Revenue")
 
 ```
 
