@@ -27,11 +27,8 @@ By conducting a comprehensive analysis of these features, this research aims to 
 **Importing the Movies Data**
 
 ```{r}
-<<<<<<< Updated upstream
 movies = read.csv("Movie_data.csv")
-=======
 movies = read.csv("movies.csv/Movie_data.csv")
->>>>>>> Stashed changes
 #head(movies)
 summary(movies)
 movie = movies # Creating a copy of data frame
@@ -74,11 +71,8 @@ smaller_font_size <- 0.8
 # Create a bar plot for the percentage of missing values in each column
 barplot(column_na_percentages, main = "Percentage of Missing Values in Each Column",
         xlab = "Columns", ylab = "Percentage of Missing Values",
-<<<<<<< Updated upstream
         col = "lightcoral", border = "black", ylim = c(0, 2),
-=======
         col = "lightcoral", border = "black", ylim = c(0, 10),
->>>>>>> Stashed changes
         names.arg = names(column_na_percentages), las = 2, cex.names = smaller_font_size)
 
 print("Rows in Dataset before dropping rows with NA Values")
@@ -110,6 +104,7 @@ movie <- movie[movie$Runtime > 0, ]
 print("Rows in Dataset After cleaning")
 print(nrow(movie))
 ```
+
 **Data Visulisation**
 
 **Boxplots for Selected Columns**
@@ -134,22 +129,10 @@ for (col in selected_columns) {
 }
 ```
 
-<<<<<<< Updated upstream
-**Data Visulisation**
-[Scatter Plots, Correlation Heatmap etc]
-
-
-**Scatterplot for Revenue**
-
-```{r}
-predictors <- c("Trailer_Likes", "Trailer_Views", "Vote_Count", "Budget", "Runtime", "Avg_Vote")
-=======
 **Scatterplot for Revenue**
 
 ```{r}
 predictors <- c("Trailer_Likes", "Trailer_Views", "Budget", "Avg_Vote","Vote_Count","Runtime")
->>>>>>> Stashed changes
-
 scatter_plots <- lapply(predictors, function(var) {
   ggplot(movie, aes(x = get(var), y = Revenue, color = Revenue)) +
     geom_point() +
@@ -158,7 +141,6 @@ scatter_plots <- lapply(predictors, function(var) {
          y = "Revenue",
          color = "Revenue")
 })
-<<<<<<< Updated upstream
 scatter_plots
 ```
 
@@ -177,14 +159,11 @@ scatter_plots<- lapply(predictors, function(var) {
       color = "Popularity"
     )
 })
-=======
->>>>>>> Stashed changes
+
 scatter_plots
 
 ```
 
-<<<<<<< Updated upstream
-=======
 **Scatterplot for Popularity**
 
 ```{r}
