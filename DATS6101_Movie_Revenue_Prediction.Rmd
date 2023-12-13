@@ -125,6 +125,20 @@ print("Rows in Dataset After cleaning")
 print(nrow(movie))
 ```
 
+Inferences:
+
+1. Budget of Movies are having value 0, which is not possible (Remove rows with budget 0)
+
+2. Revenue has negative values which is again not possible (Remove rows with revenue 0 or negative)
+
+3. Runtime of Movies are having value 0, which is not possible (Remove rows with runtime 0)
+
+4. Check for outliers and influential points in all the columns.
+
+5. Runtime had 0.004% missing values.
+
+6. These values were dropped as number of missing value is small.
+
 **Data Visulisation**
 
 **Boxplots for Selected Columns**
@@ -163,6 +177,10 @@ scatter_plots <- lapply(predictors, function(var) {
 })
 scatter_plots
 ```
+
+Inferences:
+
+Trailer Likes and Trailer views have linear relationship with the Output/Dependent variable "Revenue".
 
 **Scatterplot for Popularity**
 
@@ -214,6 +232,14 @@ library(corrplot)
 corrplot(cor_matrix, method = "color")
 
 ```
+
+Inferences:
+
+1. Trailer Likes and Trailer views has high correlation with "Revenue".
+
+2. Vote Count and Budget have moderate correlation with "Revenue".
+
+3. Popularity, Runtime and Average Vote have poor correlation with "Revenue".
 
 **Pairwise Scatterplots**
 
