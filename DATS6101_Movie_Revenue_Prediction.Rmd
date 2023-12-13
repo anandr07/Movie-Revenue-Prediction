@@ -24,11 +24,16 @@ Movies are a unique combination of artistic expression and commercial ventures. 
 
 By conducting a comprehensive analysis of these features, this research aims to build a regression model (Linear, Decision Tree, Support Vector Machine) based on valuable insights through identifying patterns, relationships, and correlations. The findings of this study are expected to have substantial implications for movie production companies, investors, and stakeholders. They can leverage the predictive model developed in this project to make informed decisions regarding their movie investments, marketing strategies, and financial planning, ultimately contributing to the success and profitability of their ventures in the film industry.
 
+# Understanding the Data
+The movie dataset under analysis originates from The Movie Database (TMDb) API, replacing the original IMDb dataset due to a DMCA takedown request. This comprehensive dataset spans plot details, cast and crew information, budget, revenues, and more for thousands of films. The transition to TMDb includes improvements such as full credits for both cast and crew, listing actors in credit order, and updated revenue figures for greater accuracy. This particular dataset has been made
+available on [Kaggle](<https://www.kaggle.com/datasets/akshaypawar7/millions-of-movies>), which was the
+source of reference. The entire dataset contains movies from 1950s to 2020s. We have more than a million rows but for computational limitations, we will analyse using a sample of the data.
+The dataset sparks curiosity about predicting movie success and categorizing films by type, utilizing crew job titles for insights. Additionally, it prompts exploration into the dynamics between major film studios and independents, potentially through clustering analysis.
+
 **Importing the Movies Data**
 
 ```{r}
 movies = read.csv("Movie_data.csv")
-movies = read.csv("movies.csv/Movie_data.csv")
 #head(movies)
 summary(movies)
 movie = movies # Creating a copy of data frame
@@ -72,7 +77,6 @@ smaller_font_size <- 0.8
 barplot(column_na_percentages, main = "Percentage of Missing Values in Each Column",
         xlab = "Columns", ylab = "Percentage of Missing Values",
         col = "lightcoral", border = "black", ylim = c(0, 2),
-        col = "lightcoral", border = "black", ylim = c(0, 10),
         names.arg = names(column_na_percentages), las = 2, cex.names = smaller_font_size)
 
 print("Rows in Dataset before dropping rows with NA Values")
