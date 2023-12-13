@@ -30,6 +30,22 @@ available on [Kaggle](<https://www.kaggle.com/datasets/akshaypawar7/millions-of-
 source of reference. The entire dataset contains movies from 1950s to 2020s. We have more than a million rows but for computational limitations, we will analyse using a sample of the data.
 The dataset sparks curiosity about predicting movie success and categorizing films by type, utilizing crew job titles for insights. Additionally, it prompts exploration into the dynamics between major film studios and independents, potentially through clustering analysis.
 
+Reference guide for the columns in the dataset:
+
+1. title: Movie or show name
+2. genres: Content categories or themes
+3. original_language: Language of the original content
+4. popularity: Measure of audience interest
+5. release_date: Date of public availability
+6. budget: Cost of production
+7. revenue: Income generated from content
+8. runtime: Duration of the content
+9. status: Current release status
+10. vote_average: Average audience ratings
+11. vote_count: Number of audience votes
+12.trailer_views: Number of trailer views
+13. trailer_likes: Number of trailer likes
+
 **Importing the Movies Data**
 
 ```{r}
